@@ -1,0 +1,109 @@
+table {
+    table-layout: fixed;
+}
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td{
+    border-bottom-width: 1px
+}
+
+table td {
+     text-overflow: ellipsis;
+     overflow: hidden;
+     white-space: nowrap;
+ }
+
+table tbody tr{
+    height: 48px !important;
+}
+
+table tbody td {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+}
+
+table th, table td {
+    /*水平居中*/
+    /*text-align: center;*/
+    /*垂直居中*/
+    vertical-align: middle !important;
+}
+
+.go {
+    width: 56px;
+    height: 32px;
+    margin-left: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 9px
+}
+
+table input[type=checkbox] {
+    zoom: 120%;
+}
+
+table thead .sorting {
+    background: url(images/sort_both.png) no-repeat center right;
+}
+
+table thead .sorting_asc {
+    background: url(images/sort_asc.png) no-repeat center right;
+}
+
+table thead .sorting_desc {
+    background: url(images/sort_desc.png) no-repeat center right;
+}
+
+.tableNavigation {
+    float: right;
+}
+.tableAfter .pagination {
+    margin: auto;
+    float:right;
+}
+.tableAfter .table_lenght{
+    height:30px !important;
+}
+.table-search div{
+    max-width: 240px;
+    margin-right: 8px;
+}
+
+table input[type=checkbox] {
+    zoom: 100%;
+}
+
+table input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    margin-right: 10px;
+    position: relative;
+}
+
+table input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background: #fff;
+    width: 110%;
+    height: 110%;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+table input[type="checkbox"]:checked::before {
+    content: "\2713";
+    background-color: #fff;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 110%;
+    border: 1px solid #7D7D7D;
+    border-radius:4px;
+    color: #7D7D7D;
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="/page/datatable/datatable.css" rel="stylesheet" type="text/css">
+    <script src="/page/datatable/datatable.js"></script>
+    <script src="/page/datatable/datatable-plug.js"></script>
+
+    <link href="/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
+
+    <script src="/assets/bootstrap-datepicker/js/bootstrap-datepicker.js" rel="stylesheet" type="text/css"></script>
+    <script src="/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+    <link href="assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <script src="/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+</head>
+<body>
+<section class="panel">
+    <div class="panel-body">
+        <table id="table"></table>
+    </div>
+</section>
+</body>
+<script>
+    var readOnly = false;
+    var table = $('#table').dataTable({
+        url: "/user/list",
+        param: {},//默认 {}
+        no: true,//默认值 false
+        radio: true,//默认值 false
+        checkbox: true,//默认值 false 覆盖 radio
+        rowInfo: true,//默认值 false 或者 function(index, rowData) return obj/html
+        readOnly: readOnly,//默认值 false
+        search: true,//默认true
+        exportExcel: true,//默认false
+        pageSize: 15,//默认15
+        pageSizeMenu: true,//默认 [15, 20, 50, 100]  pageSizeMenu: [5, 15, 25, 35, 50],//自定义
+        addRow: true,//默认true
+        button: [{name: "add", text: "新增"}, {name: "edit", text: "编辑"}, {name: "del", text: "删除"}],
+        showToolButton:true,//默认true 显示用户添加的按钮
+        columns: [
+            {field: 'userId', name: 'id',},
+            {
+                field: 'userName',
+                name: '用户名',
+                type: 'input',// input select
+                rowInfo: true,//默认true
+                search: true,
+                sort: true//排序 默认值 false
+            },
+            {
+                field: 'type',
+                name: '用户类型',
+                type: 'select',
+                search: true,
+                edit:false,
+                option: [{'name': '前台用户', 'value': 1}, {'name': '后台用户', 'value': 2}],
+            },
+            {
+                field: 'status',
+                name: '状态',
+                type: 'select',
+                search: true,
+                option: [{'name': '有效', 'value': 1}, {'name': '禁用', 'value': 0}],
+                url: ""
+            },
+            {field: 'userInfo.createTime', name: '时间', type: 'dateTime', search: true, sort: true},
+            {
+                name: "操作",
+                rowInfo: false,//详情中不显示
+                hidden: readOnly,//默认值 false
+                export: false,//导出 默认true
+                formatter: function (value, rowData, rowIndex) {
+                    var edit = $('<button class="btn btn-default btn-sm"></button>').text('编辑');
+                    var save = $('<button class="btn btn-default btn-sm"></button>').text('保存').hide();
+                    edit.click(function () {
+                        table.editRow(rowIndex);
+                        edit.hide();
+                        save.show();
+                    });
+                    save.click(function () {
+                        table.editRow(rowIndex, false);
+                        edit.show();
+                        save.hide();
+                    });
+                    return [edit, save];
+                }
+            }
+        ],
+    });
+    // table.onClickRow(function (index, rowData) {
+    //     console.log(rowData);
+    //     table.editRow(index);
+    // });
+    table.onSelect(function (rowData, checked, index) {//单选多选 回调
+        console.log(rowData);
+        //table.getSelections();获取全部
+    });
+
+    $('#addRow').click(function () {
+        table.addRow();
+    })
+</script>
+</html>
