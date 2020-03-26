@@ -2,6 +2,7 @@
 
 ## 简书地址 https://www.jianshu.com/p/f5a3d08042f4
 ## 预览地址 http://abook23.com:8081/login
+用户名密码:system/system
 
 ### 项目js引入
 ```
