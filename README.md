@@ -1,6 +1,6 @@
 我是一名 从事大厂的 web 开发高级开发工程师,平常就喜欢提高工作效率偷懒,结合国内外的各种table表格生成器,的的优缺点,自己写一个 dataTable表格生成器,已经经过大项目实践,觉得好点个赞,想要什么功能,就在下面给我留了,我来迭代实现
 
-## 已经开源 github 地址: https://github.com/abook23/dataTable
+## 简书地址 https://www.jianshu.com/p/f5a3d08042f4
 ## 预览地址 http://abook23.com:8081/login
 
 ### 项目js引入
