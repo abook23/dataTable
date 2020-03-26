@@ -1,16 +1,54 @@
+我是一名 从事大厂的 web 开发高级开发工程师,平常就喜欢提高工作效率偷懒,结合国内外的各种table表格生成器,的的优缺点,自己写一个 dataTable表格生成器,已经经过大项目实践,觉得好点个赞,想要什么功能,就在下面给我留了,我来迭代实现
+
+## 已经开源 github 地址: https://github.com/abook23/dataTable
+## 预览地址 http://abook23.com:8081/login
+
+### 项目js引入
+```
+<link href="/page/datatable/datatable.css" rel="stylesheet" type="text/css">
+<script src="/page/datatable/datatable.js"></script>
+<script src="/page/datatable/datatable-plug.js"></script>
+```
+```
+<!--    时间选择器 可以自定义-->
+<script src="/js/laydate/laydate.js"></script>
+```
+
+### 一句话生成查询条件
+```
+{search: true},
+```
+![](https://upload-images.jianshu.io/upload_images/5319344-690935920e834955.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 一句话时间选择器
+```
+type: 'dateTime', search: true,
+```
+可以自定义成你们系统的时间选择器
+![image.png](https://upload-images.jianshu.io/upload_images/5319344-d3fd5eb2156fe237.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 一句话下拉框
+```
+option: [{'name': '前台用户', 'value': 1}, {'name': '后台用户', 'value': 2}],
+```
+![image.png](https://upload-images.jianshu.io/upload_images/5319344-4fa5a4564c56a941.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 一句话添加按钮
+```
+button: [
+            {name: "add", text: "新增",class: 'btn-info', click: "addPage()"},
+            {name: "edit", text: "编辑",class: 'btn-info', click: 'editPage()'},
+            {name: "del", text: "删除", class: 'btn-warning',click: 'delUser()'}
+        ],
+```
+![](https://upload-images.jianshu.io/upload_images/5319344-ec8a17a006f0d016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+### 一句话的功能太多了
+- 编辑行
+- 自定义子表,自定义行详情,
+- 等等,自己往下看吧
+
 ![1.png](https://upload-images.jianshu.io/upload_images/5319344-ca77f50c718a9b38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![2.png](https://upload-images.jianshu.io/upload_images/5319344-d497c1ed69b21d87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![3.png](https://upload-images.jianshu.io/upload_images/5319344-c2d36e73f8e29599.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![4.png](https://upload-images.jianshu.io/upload_images/5319344-aa31d46ae08272f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![5.png](https://upload-images.jianshu.io/upload_images/5319344-e81deb8ad3e38f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-=======
-
-表格参数
-========
 数据格式
 ```
 {
@@ -19,6 +57,67 @@ totalElements: 10001
 totalPages: 667
 }
 ```
+
+简洁
+----
+```
+var table = $('#table').dataTable({
+        url: "/user/list",
+        no: true,//默认值 false
+        button: [
+            {name: "add", text: "新增",class: 'btn-info', click: "addPage()"},
+            {name: "edit", text: "编辑",class: 'btn-info', click: 'editPage()'},
+            {name: "del", text: "删除", class: 'btn-warning',click: 'delUser()'}
+        ],
+        columns: [
+            {field: 'userId', name: 'id',},
+            {field: 'userName', name: '用户名', search: true,},
+            {
+                field: 'type', name: '用户类型', search: true,
+                option: [{'name': '前台用户', 'value': 1}, {'name': '后台用户', 'value': 2}],
+            },
+            {
+                field: 'status', name: '状态', search: true,
+                option: [{'name': '有效', 'value': 1}, {'name': '禁用', 'value': 0}],
+            },
+            {
+                field: 'createTime', name: '时间', type: 'dateTime', search: true,
+                sort: true,
+                formatter: function (value, rowData, rowIndex) {
+                    return rowData.userInfo.createTime;
+                }
+            },
+            // {
+            //     name: "操作",
+            //     rowInfo: false,//详情中不显示
+            //     export: false,//导出 默认true
+            //     formatter: function (value, rowData, rowIndex) {
+            //         var edit = $('<button class="btn btn-default btn-sm"></button>').text('编辑');
+            //         var save = $('<button class="btn btn-default btn-sm"></button>').text('保存').hide();
+            //         edit.click(function () {
+            //             table.editRow(rowIndex);
+            //             edit.hide();
+            //             save.show();
+            //         });
+            //         save.click(function () {
+            //             table.editRow(rowIndex, false);
+            //             edit.show();
+            //             save.hide();
+            //         });
+            //         return [edit, save];
+            //     }
+            // }
+        ],
+    });
+    table.onClickRow(function (index, row) {
+        rowData = row
+    });
+```
+=======
+
+表格参数
+========
+
 
 | 名称           | 类型             | 默认              | 示例                                                                                                                                                                        | 描述                                      |
 |----------------|------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
@@ -92,61 +191,7 @@ formatter: function (value, rowData, rowIndex) {
 示例
 ====
 
-简洁
-----
-```
-var table = $('#table').dataTable({
-        url: "/user/list",
-        no: true,//默认值 false
-        button: [
-            {name: "add", text: "新增",class: 'btn-info', click: "addPage()"},
-            {name: "edit", text: "编辑",class: 'btn-info', click: 'editPage()'},
-            {name: "del", text: "删除", class: 'btn-warning',click: 'delUser()'}
-        ],
-        columns: [
-            {field: 'userId', name: 'id',},
-            {field: 'userName', name: '用户名', search: true,},
-            {
-                field: 'type', name: '用户类型', search: true,
-                option: [{'name': '前台用户', 'value': 1}, {'name': '后台用户', 'value': 2}],
-            },
-            {
-                field: 'status', name: '状态', search: true,
-                option: [{'name': '有效', 'value': 1}, {'name': '禁用', 'value': 0}],
-            },
-            {
-                field: 'createTime', name: '时间', type: 'dateTime', search: true,
-                sort: true,
-                formatter: function (value, rowData, rowIndex) {
-                    return rowData.userInfo.createTime;
-                }
-            },
-            // {
-            //     name: "操作",
-            //     rowInfo: false,//详情中不显示
-            //     export: false,//导出 默认true
-            //     formatter: function (value, rowData, rowIndex) {
-            //         var edit = $('<button class="btn btn-default btn-sm"></button>').text('编辑');
-            //         var save = $('<button class="btn btn-default btn-sm"></button>').text('保存').hide();
-            //         edit.click(function () {
-            //             table.editRow(rowIndex);
-            //             edit.hide();
-            //             save.show();
-            //         });
-            //         save.click(function () {
-            //             table.editRow(rowIndex, false);
-            //             edit.show();
-            //             save.hide();
-            //         });
-            //         return [edit, save];
-            //     }
-            // }
-        ],
-    });
-    table.onClickRow(function (index, row) {
-        rowData = row
-    });
-```
+
 全部说明
 --------
 ```
@@ -229,3 +274,11 @@ var table = $('#table').dataTable({
         table.addRow();
     })
 ```
+
+![2.png](https://upload-images.jianshu.io/upload_images/5319344-d497c1ed69b21d87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![3.png](https://upload-images.jianshu.io/upload_images/5319344-c2d36e73f8e29599.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![4.png](https://upload-images.jianshu.io/upload_images/5319344-aa31d46ae08272f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![5.png](https://upload-images.jianshu.io/upload_images/5319344-e81deb8ad3e38f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
