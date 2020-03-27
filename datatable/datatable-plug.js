@@ -59,6 +59,7 @@
                 ,type: 'datetime'
             });
         },180);
+		
         return input;
     }
 })(jQuery);
