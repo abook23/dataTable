@@ -36,34 +36,29 @@
     }
 
     function date(name, value) {
-        var input = $('<input>').addClass('form-control').val(value);
-        input.datepicker({
-            language: 'zh-CN',//显示中文
-            autoclose: true,//选中自动关闭
-            format: 'yyyy-mm-dd',
-            startDate: '-3d',
-        });
+        var laydateClass = 'laydate'+new Date().getTime();
+        var input = $('<input type="text">').addClass('form-control').addClass(laydateClass).val(value);
+        setTimeout(function () {
+            // laydate必须在元素加载完成,才能有效 只能用 setTimeout
+            laydate.render({
+                elem: '.'+laydateClass //指定元素
+                ,format: 'yyyy-MM-dd'
+            });
+        },180);
         return input;
     }
 
     function dateTime(name, value) {
-        $.fn.datetimepicker.dates['zh-CN'] = {
-            days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
-            daysShort: ["日", "一", "二", "三", "四", "五", "六", "日"],
-            daysMin: ["日", "一", "二", "三", "四", "五", "六", "日"],
-            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-            monthsShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-            meridiem: ["上午", "下午"],
-            suffix: ["st", "nd", "rd", "th"],
-            today: "今天",
-            clear: "清除"
-        };
-        var input = $('<input>').addClass('form-control').val(value);
-        input.datetimepicker({
-            language: 'zh-CN',//显示中文
-            format: "yyyy-mm-dd hh:ii",
-            autoclose: true,
-        });
+        var laydateClass = 'laydate'+new Date().getTime();
+        var input = $('<input type="text">').addClass('form-control').addClass(laydateClass).val(value);
+        setTimeout(function () {
+            // laydate必须在元素加载完成,才能有效 只能用 setTimeout
+            laydate.render({
+                elem: '.'+laydateClass //指定元素
+                ,format: 'yyyy-MM-dd HH:mm:ss'
+                ,type: 'datetime'
+            });
+        },180);
         return input;
     }
 })(jQuery);
