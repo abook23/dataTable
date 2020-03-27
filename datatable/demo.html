@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link href="/page/datatable/datatable.css" rel="stylesheet" type="text/css">
-    <script src="/page/datatable/datatable.js"></script>
-    <script src="/page/datatable/datatable-plug.js"></script>
 
-    <link href="/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/datatable/datatable.css" rel="stylesheet" type="text/css">
+    <script src="/plugins/datatable/datatable.js"></script>
+    <script src="/plugins/datatable/datatable-plug.js"></script>
 
-    <script src="/assets/bootstrap-datepicker/js/bootstrap-datepicker.js" rel="stylesheet" type="text/css"></script>
-    <script src="/assets/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-
-    <link href="assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
-    <script src="/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <!--    时间选择器-->
+    <script src="/plugins/laydate/laydate.js"></script>
 </head>
 <body>
 <section class="panel">
+    <div class="test3">
+
+    </div>
     <div class="panel-body">
         <table id="table"></table>
     </div>
 </section>
 </body>
+
 <script>
+    var input = $('<input type="text"  class="test1 form-control">');
+    laydate.render({
+        elem: '.test1' //指定元素
+    });
+    $('.test3').append(input);
     var readOnly = false;
     var table = $('#table').dataTable({
         url: "/user/list",
@@ -66,7 +71,7 @@
                 option: [{'name': '有效', 'value': 1}, {'name': '禁用', 'value': 0}],
                 url: ""
             },
-            {field: 'userInfo.createTime', name: '时间', type: 'dateTime', search: true, sort: true},
+            {field: 'createTime', name: '时间', type: 'dateTime', search: true, sort: true},
             {
                 name: "操作",
                 rowInfo: false,//详情中不显示

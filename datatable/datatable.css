@@ -1,33 +1,33 @@
-table {
+.data-table table {
     table-layout: fixed;
 }
-.table-bordered>thead>tr>th, .table-bordered>thead>tr>td{
+.data-table .table-bordered>thead>tr>th, .table-bordered>thead>tr>td{
     border-bottom-width: 1px
 }
 
-table td {
+.data-table table td {
      text-overflow: ellipsis;
      overflow: hidden;
      white-space: nowrap;
  }
 
-table tbody tr{
+.data-table table tbody tr{
     height: 48px !important;
 }
 
-table tbody td {
+.data-table table tbody td {
     padding-top: 6px !important;
     padding-bottom: 6px !important;
 }
 
-table th, table td {
+.data-table table th, table td {
     /*水平居中*/
     /*text-align: center;*/
     /*垂直居中*/
     vertical-align: middle !important;
 }
 
-.go {
+.data-table .go {
     width: 56px;
     height: 32px;
     margin-left: 2px;
@@ -36,42 +36,42 @@ table th, table td {
     border-radius: 9px
 }
 
-table input[type=checkbox] {
+.data-table table input[type=checkbox] {
     zoom: 120%;
 }
 
-table thead .sorting {
+.data-table table thead .sorting {
     background: url(images/sort_both.png) no-repeat center right;
 }
 
-table thead .sorting_asc {
+.data-table table thead .sorting_asc {
     background: url(images/sort_asc.png) no-repeat center right;
 }
 
-table thead .sorting_desc {
+.data-table table thead .sorting_desc {
     background: url(images/sort_desc.png) no-repeat center right;
 }
 
-.tableNavigation {
+.data-table .tableNavigation {
     float: right;
 }
-.tableAfter .pagination {
+.data-table .tableAfter .pagination {
     margin: auto;
     float:right;
 }
-.tableAfter .table_lenght{
+.data-table .tableAfter .table_lenght{
     height:30px !important;
 }
-.table-search div{
+.data-table .table-search div{
     max-width: 240px;
     margin-right: 8px;
 }
 
-table input[type=checkbox] {
+.data-table table input[type=checkbox] {
     zoom: 100%;
 }
 
-table input[type="checkbox"] {
+.data-table table input[type="checkbox"] {
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -82,7 +82,7 @@ table input[type="checkbox"] {
     position: relative;
 }
 
-table input[type="checkbox"]::before {
+.data-table table input[type="checkbox"]::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -94,7 +94,7 @@ table input[type="checkbox"]::before {
     border-radius: 4px;
 }
 
-table input[type="checkbox"]:checked::before {
+.data-table table input[type="checkbox"]:checked::before {
     content: "\2713";
     background-color: #fff;
     position: absolute;

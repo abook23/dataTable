@@ -6,7 +6,7 @@ $(function () {
             var elem = $(this);
 
             var parenClass = elem.attr('id');
-            var parenDiv = $('<div>').addClass(parenClass + "-paren");
+            var parenDiv = $('<div>').addClass(parenClass + "-paren").addClass('data-table');
             elem.before(parenDiv);
             parenDiv.append(elem);
 
@@ -193,8 +193,8 @@ $(function () {
                         var rowsData;
                         options.totalPages = obj.totalPages;
                         options.totalElements = obj.totalElements;
-                        if (options.totalPages===undefined || options.totalPages===null){
-                            options.totalPages = options.totalElements/options.pageSize
+                        if (options.totalPages === undefined || options.totalPages === null) {
+                            options.totalPages = options.totalElements / options.pageSize
                         }
                         if (options.dataSrc !== undefined)
                             rowsData = obj[options.dataSrc];
@@ -241,12 +241,12 @@ $(function () {
             }
 
             function reload(option) {
-                if(!option){
+                if (!option) {
                     option = {}
                 }
                 let {param, pageNumber} = option;
-                if (param){
-                    for(let key in param){
+                if (param) {
+                    for (let key in param) {
                         options.param[key] = param[key]
                     }
                 }
@@ -266,7 +266,7 @@ $(function () {
                     $.each(rowsData, function (rowIndex, rowData) {
                         addRow(rowIndex, rowData);
                     });
-                    if (options.totalPages>0){
+                    if (options.totalPages > 0) {
                         addTableNavigation(options.totalPages);
                     }
                     if ($.isFunction(options.onload)) {
@@ -525,7 +525,8 @@ $(function () {
                     case 'dateTime':
                         return getDateTimeView(field, value);
                     default:
-                        break;
+                        return options.template.defaultView(column, field, value);
+
                 }
             }
 
@@ -550,7 +551,7 @@ $(function () {
                 options.exportExcel = options.exportExcel === undefined ? true : options.exportExcel;
                 options.search = options.search === undefined ? true : options.search;
 
-                options.template = $.extend({}, $.fn.dataTableTemplate);
+                options.template = dataTableTemplate;
             }
 
             function getOptions() {
@@ -777,8 +778,8 @@ $(function () {
 
     $.fn.serializeJson = function () {
         var data = {};
-        var array=this.serializeArray();
-        $.each(array,function (i,item) {
+        var array = this.serializeArray();
+        $.each(array, function (i, item) {
             data[item.name] = item.value
         });
         // this.find('input,select').each(function () {

@@ -1,14 +1,19 @@
-(function ($) {
-    $.fn.dataTableTemplate = {
+dataTableTemplate = function () {
+    return {
         input: input,
         select: select,
         date: date,
-        dateTime: dateTime
+        dateTime: dateTime,
+        defaultView: defaultView
     };
+
+    function defaultView(column, field, value) {
+        return '<a>未定义 type</a>'
+    }
 
     function input(name, value) {
         var input = $('<input>').addClass('form-control');
-        input.attr('name', name).attr('autocomplete','off');
+        input.attr('name', name).attr('autocomplete', 'off');
         input.val(value);
         return input;
     }
@@ -36,30 +41,29 @@
     }
 
     function date(name, value) {
-        var laydateClass = 'laydate'+new Date().getTime();
+        var laydateClass = 'laydate' + new Date().getTime();
         var input = $('<input type="text">').addClass('form-control').addClass(laydateClass).val(value);
         setTimeout(function () {
             // laydate必须在元素加载完成,才能有效 只能用 setTimeout
             laydate.render({
-                elem: '.'+laydateClass //指定元素
-                ,format: 'yyyy-MM-dd'
+                elem: '.' + laydateClass //指定元素
+                , format: 'yyyy-MM-dd'
             });
-        },180);
+        }, 180);
         return input;
     }
 
     function dateTime(name, value) {
-        var laydateClass = 'laydate'+new Date().getTime();
+        var laydateClass = 'laydate' + new Date().getTime();
         var input = $('<input type="text">').addClass('form-control').addClass(laydateClass).val(value);
         setTimeout(function () {
             // laydate必须在元素加载完成,才能有效 只能用 setTimeout
             laydate.render({
-                elem: '.'+laydateClass //指定元素
-                ,format: 'yyyy-MM-dd HH:mm:ss'
-                ,type: 'datetime'
+                elem: '.' + laydateClass //指定元素
+                , format: 'yyyy-MM-dd HH:mm:ss'
+                , type: 'datetime'
             });
-        },180);
-	
+        }, 180);
         return input;
     }
-})(jQuery);
+}();
